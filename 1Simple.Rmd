@@ -111,7 +111,7 @@ class: left, top
 
 # Dyestuff data plot
 
-```{r Dyestuffplot,fig.height=3,dev='svg',echo=FALSE}
+```{r Dyestuffplot,fig.height=3,echo=FALSE}
 set.seed(1234543)
 print(dotplot(reorder(Batch, Yield) ~ Yield, Dyestuff,
               ylab = "Batch", jitter.y = TRUE, pch = 21, aspect = 0.27,
@@ -223,7 +223,7 @@ class: left, top
 
 - These are sometimes called *"caterpillar plots"*.
   
-```{r fm1ranef,dev='svg',echo=FALSE,fig.height=2.5,fig.align='center'}    
+```{r fm1ranef,echo=FALSE,fig.height=2.5,fig.align='center'}    
 print(dotplot(ranef(fm1, condVar = TRUE), strip = FALSE)[[1]])
 ``` 
 
@@ -272,7 +272,7 @@ class: center, top
 
 # Plot of the Dyestuff2 data
 
-```{r Dyestuff2plot,dev='svg',echo=FALSE,fig.height=3}
+```{r Dyestuff2plot,echo=FALSE,fig.height=3}
 print(dotplot(reorder(Batch, Yield) ~ Yield, Dyestuff2,
               ylab = "Batch", jitter.y = TRUE, pch = 21, aspect = 0.27,
               xlab = "Simulated response (dimensionless)",
@@ -342,7 +342,7 @@ class: center, top
 
 # Penicillin data plot
 
-```{r PenicillinPlot,dev='svg',echo=FALSE,fig.align='center',fig.height=5.4}
+```{r PenicillinPlot,echo=FALSE,fig.align='center',fig.height=5.4}
 print(dotplot(reorder(plate, diameter) ~ diameter, Penicillin, groups = sample,
               ylab = "Plate", xlab = "Diameter of growth inhibition zone (mm)",
               type = c("p", "a"), auto.key = list(columns = 6, lines = TRUE)))
@@ -386,7 +386,7 @@ class: center, top
 
 
 # Prediction intervals for random effects
-```{r fm2ranef,dev='svg',echo=FALSE,fig.align='center',fig.height=5.4}  
+```{r fm2ranef,echo=FALSE,fig.align='center',fig.height=5.4}  
 qrr2 <- dotplot(ranef(fm2, condVar = TRUE), strip = FALSE)
 print(qrr2[[1]], pos = c(0,0,1,0.75), more = TRUE)
 print(qrr2[[2]], pos = c(0,0.65,1,1))
@@ -488,7 +488,7 @@ class: left, top
 
 # Pastes data plot
 
-```{r Pastesplot,dev='svg',echo=FALSE,fig.height=5}
+```{r Pastesplot,echo=FALSE,fig.height=5}
 Pastes <- within(Pastes, bb <- reorder(batch, strength))
 Pastes <- within(Pastes, ss <- reorder(reorder(sample, strength),
           as.numeric(batch)))
@@ -512,7 +512,7 @@ class: center, top
 
 # Random effects from model fm3
 
-```{r fm3ranef,dev='svg',echo=FALSE,fig.align='center',fig.height=5}  
+```{r fm3ranef,echo=FALSE,fig.align='center',fig.height=5}  
 qrr3 <- dotplot(ranef(fm3, condVar = TRUE), strip = FALSE)
 print(qrr3[[1]], pos = c(0,0,1,0.75), more = TRUE)
 print(qrr3[[2]], pos = c(0,0.65,1,1))
@@ -677,7 +677,7 @@ class: center, top
 
 
 # Twelve schools, each with 5 classrooms
-```{r Schoolsplot,dev='svg',echo=FALSE,fig.align='center',fig.height=5.4}
+```{r Schoolsplot,echo=FALSE,fig.align='center',fig.height=5.4}
 refactor <- function(x) if(is.factor(x)) factor(x) else x
 sch12 <- do.call(data.frame,
                  lapply(subset(classroom,
@@ -810,7 +810,7 @@ class: center, top
 
 # Prediction intervals on random effects for class
 
-```{r Classpredi,dev='svg',echo=FALSE,fig.align='center',fig.height=5.2}
+```{r Classpredi,echo=FALSE,fig.align='center',fig.height=5.2}
 print(dotplot(ranef(fm8, condVar="TRUE"), strip = FALSE,
               scales = list(y = list(draw = FALSE)))$classid)
 ```     
@@ -822,7 +822,7 @@ class: left, top
 
 With many levels of the grouping factor, use a normal probability plot (`qqmath`) of the prediction intervals for the random effects.
 
-```{r Classpred2,dev='svg',echo=FALSE,fig.align='center',fig.height=5}
+```{r Classpred2,echo=FALSE,fig.align='center',fig.height=5}
 qqmath(ranef(fm8, condVar=TRUE),strip=FALSE)$classid
 ```     
 
@@ -831,7 +831,7 @@ class: center, top
 
 # Normal probability plot of random effects for school
 
-```{r Schoolpred,dev='svg',echo=FALSE,fig.align='center',fig.height=5.4}
+```{r Schoolpred,echo=FALSE,fig.align='center',fig.height=5.4}
 print(qqmath(ranef(fm8, condVar=TRUE),strip=FALSE)$schoolid)
 ```
 

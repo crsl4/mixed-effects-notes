@@ -81,7 +81,7 @@ class: left, top
 
 # Reaction time versus days by subject
 
-```{r sleepxy,echo=FALSE,dev='svg',fig.height=4.2,fig.align='center'}
+```{r sleepxy,echo=FALSE,fig.height=4.2,fig.align='center'}
 print(xyplot(Reaction ~ Days | Subject, sleepstudy, aspect = "xy",
                     layout = c(9,2), type = c("g", "p", "r"),
                     index.cond = function(x,y) coef(lm(y ~ x))[1],
@@ -145,7 +145,7 @@ class: left, top
 
 # 95% conf int on within-subject intercept and slope
 
-```{r Sl1,dev='svg',echo=FALSE,fig.height=4.5,fig.align='center'}
+```{r Sl1,echo=FALSE,fig.height=4.5,fig.align='center'}
 print(plot(confint(lmList(Reaction ~ Days | Subject, sleepstudy),
                    pooled = TRUE), order = 1))
 ``` 
@@ -170,7 +170,7 @@ class: left, top
 
 - The random effects vector, $\mathbf b$, consists of the $18$ intercept effects followed by the $18$ slope effects.
 
-```{r sleepZ,dev='svg',echo=FALSE,fig.height=3,fig.align='center'}
+```{r sleepZ,echo=FALSE,fig.height=3,fig.align='center'}
 print(image(getME(fm1, "Zt"),xlab=NULL,ylab=NULL,sub=NULL))
 ``` 
 
@@ -294,7 +294,7 @@ class: left, top
 
 # Scatterplot of the conditional means
 
-```{r rr2plot,echo=FALSE,dev='svg',fig.height=5.4,fig.align='center'}
+```{r rr2plot,echo=FALSE,fig.height=5.4,fig.align='center'}
 print(plot(rr2, aspect = 1, type = c("g", "p"))[[1]])
 ```
 
@@ -330,7 +330,7 @@ class: left, top
 
 # Estimated within-group coefficients and BLUPs
 
-```{r shrinkage,echo=FALSE,dev='svg',fig.align='center',fig.height=5.2}
+```{r shrinkage,echo=FALSE,fig.align='center',fig.height=5.2}
 df <- coef(lmList(Reaction ~ Days | Subject, sleepstudy))
 fclow <- subset(df, `(Intercept)` < 251)
 fchigh <- subset(df, `(Intercept)` > 251)
@@ -375,7 +375,7 @@ class: left, top
 
 # Observed and fitted
 
-```{r shrinkfit,echo=FALSE,dev='svg',fig.height=4,fig.align='center'}
+```{r shrinkfit,echo=FALSE,fig.height=4,fig.align='center'}
 print(xyplot(Reaction ~ Days | Subject, sleepstudy, aspect = "xy",
              layout = c(9,2), type = c("g", "p", "r"),
              coef.list = df[,3:4],
@@ -407,7 +407,7 @@ class: left, top
 
   # Plot of prediction intervals for the random effects
 
-```{r caterpillar,dev='svg',echo=FALSE,fig.align='center',fig.height=4.5}
+```{r caterpillar,echo=FALSE,fig.align='center',fig.height=4.5}
 print(dotplot(ranef(fm1,condVar=TRUE),
               scales = list(x = list(relation = 'free')))[["Subject"]])
 ``` 
@@ -486,7 +486,7 @@ class: left, top
 
 
 # Response by `Grp` and `Trt`
-```{r Multiplot1,dev='svg',echo=FALSE,fig.height=4.2,fig.align='center'}
+```{r Multiplot1,echo=FALSE,fig.height=4.2,fig.align='center'}
 print(dotplot(reorder(Grp, Adj) ~ Adj, Multilocation,
               groups=Trt, type=c("p","a"),
               auto.key=list(columns=4,lines=TRUE)))
@@ -504,7 +504,7 @@ print(dotplot(reorder(Grp, Adj) ~ Adj, Multilocation,
 class: left, top
 
 # Response by `Block` and `Trt` within `Location`
-```{r Multiplot2,dev='svg',echo=FALSE,fig.align='center',fig.height=4.6}
+```{r Multiplot2,echo=FALSE,fig.align='center',fig.height=4.6}
 ll <- with(Multilocation, reorder(Location, Adj))
 print(dotplot(reorder(reorder(Grp, Adj), as.numeric(ll)) ~ Adj|ll, Multilocation,
               groups=Trt, type=c("p","a"), strip=FALSE, strip.left=TRUE, layout=c(1,9),
@@ -829,7 +829,7 @@ class: left, top
 
 
 # Data on early childhood cognitive development
-```{r EarlyData,dev='svg',echo=FALSE,fig.align='center',fig.height=5.2}
+```{r EarlyData,echo=FALSE,fig.align='center',fig.height=5.2}
 print(xyplot(cog ~ age | id, Early, type = c("g",'b'), aspect = 'xy',
              layout = c(29,4), between = list(y = c(0,0.5)),
 #             skip = rep(c(FALSE,TRUE),c(58,11)),
@@ -846,7 +846,7 @@ class: left, top
 
 # Peculiarities of the early childhood cognitive development
 - The cognitive score is apparently adjusted for age but
-```{r EarlyDensity,dev='svg',echo=FALSE,fig.align='center',fig.height=5.2}
+```{r EarlyDensity,echo=FALSE,fig.align='center',fig.height=5.2}
 print(densityplot(~ cog | factor(age), Early,  group=trt,
                   layout = c(1,3),
                   plot.points=FALSE,
@@ -892,7 +892,7 @@ class: left, top
 
 # Random effects from the Early model fit
 
-```{r fm12re,echo=FALSE,dev='svg',fig.height=5.4}
+```{r fm12re,echo=FALSE,fig.height=5.4}
 print(plot(ranef(fm12))[1])
 ```
 
